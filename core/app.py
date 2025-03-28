@@ -1,16 +1,16 @@
 import os
 import streamlit as st
-import base64
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+GEMINI_API_KEY = st.secrets["GEMINI"]["api_key"]
+MODEL = st.secrets["GEMINI"]["model"]
 
 def generate(prompt):
-    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-    model = "gemini-2.0-flash"
+    client = genai.Client(api_key=GEMINI_API_KEY)
+    model = MODEL
     contents = [
         types.Content(
             role="user",
